@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#174b33"/>
+  <meta name="description" content="Match purchase orders, goods receipts, and supplier invoices in minutes. Find quantity and price discrepancies. Your CSV files stay in your browser."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="POMatch"/>
+  <meta property="og:title" content="POMatch — catch invoice discrepancies before you pay"/>
+  <meta property="og:description" content="Compare what you ordered, what arrived, and what you were billed. Private, browser-based three-way matching. Try a free sample."/>
+  <meta name="twitter:card" content="summary"/>
+  <title>POMatch — catch invoice discrepancies before you pay</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a href="#top" class="logo" aria-label="POMatch home"><span class="logomark" aria-hidden="true">P<span>↗</span></span><strong>PO<span>Match</span></strong></a>
+      <div class="header-info"><span class="secure-dot" aria-hidden="true"></span>Free pilot · Files stay on your device</div>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> PURCHASE ORDER · DELIVERY · INVOICE</p>
+          <h1 id="hero-heading">Don't pay for<br/><em>goods you never received.</em></h1>
+          <p class="lede">Match what you ordered, what arrived, and what your supplier billed. Spot quantity and price discrepancies, SKU by SKU, before approving an invoice.</p>
+          <div class="hero-tags"><span>CSV exports</span><span>No account</span><span>Runs in your browser</span></div>
+        </div>
+        <aside class="hero-side" aria-label="How three-way matching works">
+          <span class="mini-label">THREE FILES. ONE CLEAR REPORT.</span>
+          <div class="step-icon">01 <span>Purchase order</span><b>↘</b></div>
+          <div class="step-icon">02 <span>Goods received</span><b>↘</b></div>
+          <div class="step-icon">03 <span>Supplier invoice</span><b>↓</b></div>
+          <div class="hero-result"><span>Your result</span><strong>Discrepancy report</strong><span>SKU · quantity · unit price</span></div>
+        </aside>
+      </section>
+      <section class="workspace" aria-labelledby="upload-heading">
+        <div class="section-row">
+          <div><p class="eyebrow">TRY THE FREE PILOT</p><h2 id="upload-heading">Compare three CSV files</h2><p>Export CSV files from your systems. Nothing is uploaded; processing happens entirely in your browser.</p></div>
+          <button type="button" id="demo" class="secondary">↗ Try sample data</button>
+        </div>
+        <div class="upload-grid">
+          <label class="upload-card"><span class="number">01</span><span class="upload-name">Purchase order</span><span class="upload-describe">What you ordered and the agreed unit prices</span><input id="order" type="file" accept=".csv,text/csv"/><span class="input-hint" id="order-name">Choose a CSV file</span><small>Required: SKU, ordered quantity, unit price</small></label>
+          <label class="upload-card"><span class="number">02</span><span class="upload-name">Goods received</span><span class="upload-describe">What was actually delivered and received</span><input id="received" type="file" accept=".csv,text/csv"/><span class="input-hint" id="received-name">Choose a CSV file</span><small>Required: SKU, received quantity</small></label>
+          <label class="upload-card"><span class="number">03</span><span class="upload-name">Supplier invoice</span><span class="upload-describe">What your supplier has invoiced</span><input id="invoice" type="file" accept=".csv,text/csv"/><span class="input-hint" id="invoice-name">Choose a CSV file</span><small>Required: SKU, invoiced quantity, unit price</small></label>
+        </div>
+        <div class="action-row">
+          <button id="analyze" type="button" class="primary">Run three-way match <span aria-hidden="true">↗</span></button>
+          <label class="currency-label" for="currency">Currency <select id="currency" aria-label="Currency for display and report"><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="GBP">GBP (£)</option><option value="SEK">SEK (kr)</option></select></label>
+          <span id="status" aria-live="polite">Try the sample or select all three files.</span>
+        </div>
+        <p class="smallprint input-note">CSV only (.csv), up to 5 MB per file. Currency is for display only — no conversion is performed. Use files with matching SKUs, one currency, and unit prices excluding tax.</p>
+      </section>
+      <section id="results" class="results" hidden aria-labelledby="result-heading">
+        <div class="results-top">
+          <div><p class="eyebrow">MATCHING REPORT</p><h2 id="result-heading">Items to double-check</h2><p id="result-source">Calculated from sample data.</p></div>
+          <button id="download" class="secondary" type="button">↓ Download discrepancies CSV</button>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><span>SKUs checked</span><strong id="skus">—</strong></div>
+          <div class="stat"><span>SKUs with discrepancies</span><strong id="mismatches">—</strong></div>
+          <div class="stat attention"><span>Estimated potential overcharge</span><strong id="overcharge">—</strong><small>Before taxes, shipping, discounts and adjustments</small></div>
+        </div>
+        <div class="result-table-wrap"><table><thead><tr><th scope="col">SKU</th><th scope="col">Ordered</th><th scope="col">Received</th><th scope="col">Invoiced</th><th scope="col">Finding</th><th scope="col">Potential overcharge</th></tr></thead><tbody id="rows"></tbody></table></div>
+        <p class="smallprint">This is an indicative screening report, not an invoice dispute or accounting entry. Check goods identity, delivery terms, credit notes, freight, discounts and tax before making payment decisions. A discrepancy does not necessarily mean a supplier made an error.</p>
+      </section>
+      <section class="bottom" aria-labelledby="pilot-heading">
+        <div><p class="eyebrow">EARLY ACCESS</p><h2 id="pilot-heading">Would this help your business?</h2><p>We're exploring simple three-way matching for buyers, warehouse teams and ecommerce operators. Tell us what your actual exports look like or which checks you need. Please don't email confidential files.</p></div>
+        <a class="secondary contact" href="mailto:hello@nyttolabs.com?subject=POMatch%20pilot%20feedback">Share feedback ↗</a>
+      </section>
+    </main>
+    <footer><span>POMatch · A prototype by Nytto Labs</span><span>CSV data is processed locally. No uploads, accounts or tracking scripts.</span></footer>
+  </div>
+  <script src="matcher.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
