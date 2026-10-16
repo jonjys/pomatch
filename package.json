@@ -1,0 +1,12 @@
+{
+  "name": "pomatch",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Private browser-based three-way matching of purchase orders, deliveries, and invoices",
+  "scripts": {
+    "test": "node --test tests.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
